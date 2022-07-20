@@ -1,6 +1,14 @@
+const yargsInteractive = require("yargs-interactive");
+
+
 const Movie = require("./utils")
 const yargs = require("yargs")
 const { client, connection } = require("./db/connection")
+
+
+
+
+
 
 const app = async (yargsObj) => {
 
@@ -12,7 +20,8 @@ const app = async (yargsObj) => {
         await newMovie.add(collection)
         
     } else if (yargsObj.read) {
-        await collection.find().toArray()
+        const results = await collection.find().toArray()
+        console.table(results)
 
     } else if (yargsObj.update) {
         const query = new Movie(yargsObj.oldTitle, yargs.oldActor)
@@ -23,6 +32,9 @@ const app = async (yargsObj) => {
         const query = new Movie(yargsObj.title, yargsObj.actor)
         await query.remove(collection)
 
+    } else if (yargsObj.tacticalNuke) {
+        await collection.deleteMany({})
+
     } else {
         console.log("Incorrect command");
     }
@@ -31,3 +43,4 @@ const app = async (yargsObj) => {
 }
 
 app(yargs.argv)
+
