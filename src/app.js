@@ -31,7 +31,3 @@ const app = async (yargsObj) => {
 }
 
 app(yargs.argv)
-
-// node src/app --read   
-// node src/app --remove --title "movie1" --actor "actor 1"
-// node src/app --update --oldTitle "hi" --newTitle "bye" --newActor "bye"
