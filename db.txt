@@ -1,0 +1,91 @@
+structured eg sql
+non structured eg mongo db
+
+to interact with a db we use a DBMS (database management system) - sqp mongo db
+
+mongo db is a noSQL db - can be structured or non structured
+
+local vs cloud hosted.  
+
+mongo db promotes atlas (cloud provider) the most
+
+mongo db atlas - 
+
+npm init --y
+
+npm i yargs mongodb dotenv
+
+mkdir scr src/utils src/db
+touch .gitignore src/app.js src/util/index.js src/db/connection.js
+.gitignore /node_modules
+
+note: number console.logs
+
+note: package-lock additional info if you dont have most up to date npm
+
+Note: chain npm, if any fail all fail
+
+note: object destructuring pulls functions,classes out of libraries
+
+MongoClient class that takes a connection string (available from atlas)
+
+ATLAS 
+connect - Connect your application - get connection string - angular brackets and everythhing inside need to be replaced
+
+connection string : Andy:test123@...
+
+env variables hide secret details
+
+touch .env (goes in gitignore)
+
+screaming snake case - all caps with underscores
+
+MONGO_URI = .... (no speach marks)
+
+.env in gitignore
+
+to access env variable :
+
+const dotenv = require("dotenv)
+dotenv.config()
+
+===
+
+require("dotenv").congig()
+
+// object we can run mehtods on
+const client =  new MongoClient(process.env.MONGO_URI)
+
+// must tell js to wait if we interact with something outside the app, because js is single threadeed
+
+const connection - async () => {
+    try {
+        // connect to mongo db, now client has acces to additionaal methods
+        await client.connect()
+        // cluster for mongodb can contain dbs 
+        const db =  client.db("Movies")
+        // collection creates the individual items - collection is singular think individual items
+        return db.collection("Movie")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// we do crud operations on the return value of connection
+
+module.exports = { client, connection }
+
+const collection =  connection.insertOne({title: 'spiderman', actot: '...'})
+
+note: how you export something is how you import it - curlies or not
+
+node src/app.js --create --title "star wars" --actor "mark hmail"
+
+note: hanging terminal - need to close connect to db - ctrl + can OR add
+
+await client.close()
+
+(collection.find().toArray())
+.toArray() method puts data in nice format
+
+update will need two objects
