@@ -1,7 +1,9 @@
+Class notes
+
 structured eg sql
 non structured eg mongo db
 
-to interact with a db we use a DBMS (database management system) - sqp mongo db
+to interact with a db we use a DBMS (database management system) - sql/mongo db
 
 mongo db is a noSQL db - can be structured or non structured
 
@@ -25,7 +27,7 @@ note: package-lock additional info if you dont have most up to date npm
 
 Note: chain npm, if any fail all fail
 
-note: object destructuring pulls functions,classes out of libraries
+note: object destructuring pulls functions/classes out of libraries
 
 MongoClient class that takes a connection string (available from atlas)
 
