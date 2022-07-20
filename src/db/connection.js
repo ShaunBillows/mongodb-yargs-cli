@@ -15,7 +15,6 @@ const connection = async () => {
         return db.collection("movie")
         
     } catch (error) {
-        // Ensures that the client will close when you finish/error
         console.log(error);
     } 
   }
