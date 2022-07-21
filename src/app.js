@@ -27,6 +27,17 @@ const app = async (yargsObj) => {
     } else if (yargsObj.erase) {
         await collection.deleteMany({})
 
+    } else if (yargsObj.filter) {
+        const query = {}
+        const options = {
+            // sort returned documents in ascending order by [yargsObj.filter] (A->Z)
+            sort: { [yargsObj.filter]: 1 },
+            // Include only the `title` and `actor` fields in each returned document
+            projection: { _id: 0, title: 1, actor: 1 },
+          };
+        const cursor = await collection.find(query, options)
+        await cursor.forEach(console.log);
+        
     } else {
         log("Incorrect command");
     }
